@@ -1,0 +1,54 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install multilib deps
+        if: runner.os == 'Linux'
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y gcc-multilib g++-multilib libc6-dev-i386
+
+      - name: Configure CMake
+        run: >
+          cmake -B build
+          -DCMAKE_BUILD_TYPE=Release
+          ${{ runner.os == 'Windows' && '-A Win32' || '' }}
+        
+      - name: Build Component
+        run: cmake --build build --config Release --parallel 4
+
+      - name: Standardise Output Names
+        if: runner.os == 'Linux'
+        run: |
+          if [ -f build/libomp-pathfinder.so ]; then
+            mv build/libomp-pathfinder.so build/omp-pathfinder.so
+          fi
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: omp-pathfinder-${{ matrix.os }}
+          path: |
+            build/omp-pathfinder.dll
+            build/omp-pathfinder.so
+          if-no-files-found: error

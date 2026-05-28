@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(omp-pathfinder LANGUAGES C CXX VERSION 1.1.0)
+project(omp-pathfinder LANGUAGES C CXX VERSION 0.1.2.0)
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)

@@ -31,17 +31,24 @@ struct PathNode {
     uint32_t flags;
 };
 struct NaviNode {
-    int16_t positionX; int16_t positionY;
-    uint16_t areaId; uint16_t nodeId;
-    uint8_t directionX; uint8_t directionY;
+    int16_t positionX;
+    int16_t positionY;
+    uint16_t areaId;
+    uint16_t nodeId;
+    uint8_t directionX;
+    uint8_t directionY;
     uint32_t flags;
 };
 struct LinkNode {
-    uint16_t areaId; uint16_t nodeId;
+    uint16_t areaId;
+    uint16_t nodeId;
 };
 struct NodeHeader {
-    uint32_t nodesNumber; uint32_t vehicleNodesNumber;
-    uint32_t pedNodesNumber; uint32_t naviNodesNumber; uint32_t linksNumber;
+    uint32_t nodesNumber;
+    uint32_t vehicleNodesNumber;
+    uint32_t pedNodesNumber;
+    uint32_t naviNodesNumber;
+    uint32_t linksNumber;
 };
 #pragma pack(pop)
 
@@ -165,7 +172,7 @@ public:
     bool enqueueTask(PathTask task);
 
     StringView componentName() const override { return "open.mp A* Pathfinder Component"; }
-    SemanticVersion componentVersion() const override { return SemanticVersion(1, 2, 1, 0); }
+    SemanticVersion componentVersion() const override { return SemanticVersion(0, 1, 2, 0); }
 
     void onLoad(ICore* c) override;
     void onInit(IComponentList* components) override;

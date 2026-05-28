@@ -35,7 +35,7 @@ main(){}
 
 public OnGameModeInit()
 {
-    print("[NPC Pathfinding] Initialising optimised pathfinder...");
+    print("[NPC Pathfinding] Initialising optimal pathfinder...");
     
     CA_Init();
 
@@ -69,9 +69,18 @@ public OnGameModeExit()
 
 stock ResetNPCPaths(npcid)
 {
-    if (gNPC[npcid][PathId_Direct] != INVALID_PATH_ID) { NPC_DestroyPath(gNPC[npcid][PathId_Direct]); gNPC[npcid][PathId_Direct] = INVALID_PATH_ID; }
-    if (gNPC[npcid][PathId_Start]  != INVALID_PATH_ID) { NPC_DestroyPath(gNPC[npcid][PathId_Start]);  gNPC[npcid][PathId_Start]  = INVALID_PATH_ID; }
-    if (gNPC[npcid][PathId_AStar]  != INVALID_PATH_ID) { NPC_DestroyPath(gNPC[npcid][PathId_AStar]);  gNPC[npcid][PathId_AStar]  = INVALID_PATH_ID; }
+    if (gNPC[npcid][PathId_Direct] != INVALID_PATH_ID) { 
+        NPC_DestroyPath(gNPC[npcid][PathId_Direct]); 
+        gNPC[npcid][PathId_Direct] = INVALID_PATH_ID; 
+    }
+    if (gNPC[npcid][PathId_Start]  != INVALID_PATH_ID) { 
+        NPC_DestroyPath(gNPC[npcid][PathId_Start]);  
+        gNPC[npcid][PathId_Start]  = INVALID_PATH_ID; 
+    }
+    if (gNPC[npcid][PathId_AStar]  != INVALID_PATH_ID) { 
+        NPC_DestroyPath(gNPC[npcid][PathId_AStar]);  
+        gNPC[npcid][PathId_AStar]  = INVALID_PATH_ID; 
+    }
 }
 
 stock Float:GetDistance3D(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)

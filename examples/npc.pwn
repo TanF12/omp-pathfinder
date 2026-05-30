@@ -129,7 +129,7 @@ stock bool:IsPathWalkable(Float:startX, Float:startY, Float:startZ, Float:endX, 
         new Float:bodyHitZ;
         if (CA_RayCastLine(prevPx, prevPy, prevFloorZ + RAYCAST_BODY_MID_Z, px, py, currFloorZ + RAYCAST_BODY_MID_Z, hitX, hitY, bodyHitZ)) 
         {
-            if (bodyHitZ - prevFloorZ > MAX_CLIMBABLE_OBSTACLE_Z) return false; // Wall is too high
+            return false; // the ray hit something
         }
 
         prevPx = px;

@@ -4,7 +4,7 @@
 
 #define NPC_HEIGHT                  1.8
 #define PED_Z_OFFSET                1.2
-#define MAX_PATH_SEGMENT_LENGTH     4.0 
+#define MAX_PATH_SEGMENT_LENGTH     0.5 
 #define TERRAIN_MAX_Z_CHANGE        1.5
 #define MAX_CLIMBABLE_OBSTACLE_Z    0.8
 
@@ -131,7 +131,7 @@ stock bool:IsPathWalkable(Float:startX, Float:startY, Float:startZ, Float:endX, 
         {
             return false; // the ray hit something
         }
-
+        
         prevPx = px;
         prevPy = py;
         prevFloorZ = currFloorZ;

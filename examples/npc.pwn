@@ -4,7 +4,7 @@
 
 #define NPC_HEIGHT                  1.8
 #define PED_Z_OFFSET                1.2
-#define MAX_PATH_SEGMENT_LENGTH     0.5 
+#define MAX_PATH_SEGMENT_LENGTH     4.0
 #define TERRAIN_MAX_Z_CHANGE        1.5
 #define MAX_CLIMBABLE_OBSTACLE_Z    0.8
 
@@ -308,7 +308,7 @@ public OnPathCalculated(npcid, path_id, success)
     NPC_GetPos(npcid, npcX, npcY, npcZ);
     AStar_GetNodePos(gNPC[npcid][StartArea], gNPC[npcid][StartNode], sNodeX, sNodeY, sNodeZ);
     
-    if (GetDistance3D(npcX, npcY, npcZ, sNodeX, sNodeY, sNodeZ) > MAX_PATH_SEGMENT_LENGTH) 
+    if (GetDistance3D(npcX, npcY, npcZ, sNodeX, sNodeY, sNodeZ) > 0.5) 
     {
         gNPC[npcid][PathId_Start] = NPC_CreatePath();
 
